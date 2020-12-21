@@ -9,7 +9,10 @@ import inventory from "@/views/inventory";
 import login from "@/components/login";
 import counter from "@/views/counter";
 
+
 Vue.use(VueRouter);
+
+
 
 const routes = [
   {
