@@ -35,7 +35,7 @@
 export default {
   data() {
     return {
-      userName: "김태연",
+      userName: "",
       password: "",
     };
   },
