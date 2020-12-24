@@ -42,13 +42,18 @@ export default {
   methods: {
     login() {
       //-- write login authencation logic here! --
-      let auth = true;
-
-      if (auth) this.$router.push("pastsales");
-      else alert("login failed");
-    },
-    getUserName() {
-      return this.userName;
+      this.axios
+        .post("http://127.0.0.1:3030/auth/login", {
+          account: this.userName,
+          password: this.password,
+        })
+        .then((res) => {
+          if (res.data) this.$router.push("pastsales");
+          else alert("login failed");
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
     },
   },
 };

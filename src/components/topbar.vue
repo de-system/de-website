@@ -13,7 +13,7 @@
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-          <h6 id="user">{{ userName }}</h6>
+          <h6 id="user">{{ account }}</h6>
           <img id="member_logo" src="@/assets/businessman.png" />
           <b-nav-item-dropdown right>
             <template #button-content>
@@ -44,11 +44,16 @@
 
 <script>
 //import login from "@/components/login";
+import { mapState } from "vuex";
 export default {
   data() {
     return {
-      userName: "김태연",
+      userName: "",
     };
+  },
+  //接vuex資料 使用import的mapState方法 接userName
+  computed: {
+    ...mapState(["account"]),
   },
 };
 </script>
