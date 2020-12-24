@@ -11,8 +11,8 @@
         @change="change()"
       >
         <option value="1">買一送一</option>
-        <option value="2">折價卷</option>
-        <option value="3">調查問卷</option>
+        <option value="2">寄調查問卷</option>
+        <option value="3">送折扣卷</option>
       </select>
       <br />
       <!-- <span>{{ formdata.select }}</span> -->
@@ -20,7 +20,9 @@
       <h5>行銷成本</h5>
       <h5>${{ cost }}</h5>
       <br />
-      <button type="submit" id="marketMethodBtn">送出策略</button>
+      <button type="button" id="marketMethodBtn" @click="submitStrategy()">
+        送出策略
+      </button>
     </form>
   </div>
 </template>
@@ -53,6 +55,20 @@ export default {
         })
         .then((res) => {
           if (res.data) this.cost = res.data.strategyCost;
+          else alert("回傳錯誤");
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    },
+    submitStrategy() {
+      alert("按下btn");
+      this.axios
+        .post("http://127.0.0.1:3030/linebot/bot", {
+          strategyId: this.formdata.select,
+        })
+        .then((res) => {
+          if (res.data) alert("成功發送 " + res.data.type + " 策略");
           else alert("回傳錯誤");
         })
         .catch(function(error) {
