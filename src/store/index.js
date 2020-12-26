@@ -10,16 +10,17 @@ export default new Vuex.Store({
     cost: "",
     customer: [],
   },
-  mutations: {
-    fetchCus: (state) => {
-      state.customer = "50";
-    },
-  },
-  actions: {
-    fetchCus: async ({ commit }) => {
-      //const api = "http://127.0.0.1:3030/cost/cost";
-      commit("fetchCost");
-    },
-  },
+  // mutations: {
+  //   fetchCus: (state, payload) => {
+  //     state.customer = payload;
+  //   },
+  // },
+  // actions: {
+  //   fetchCus: async ({ commit }) => {
+  //     let payload =[];
+  //     //const api = "http://127.0.0.1:3030/cost/cost";
+  //     commit("fetchCost");
+  //   },
+  // },
   getters: {},
 });
