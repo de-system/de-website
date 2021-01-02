@@ -46,7 +46,9 @@
           <img src="@/assets/cashier.png" alt="" />
           <ul id="sidefont">
             <li id="sideBtn">
-              <router-link to="/counter" id="routes">分櫃存貨調撥</router-link>
+              <router-link to="/counter" id="routes" @click="counterManage()"
+                >分櫃存貨調撥</router-link
+              >
             </li>
           </ul>
         </li>
@@ -56,7 +58,25 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {};
+  },
+  methods: {
+    counterManage() {
+      this.axios
+        .post("http://127.0.0.1:3030/counter/manageInventory", {})
+        .then((res) => {
+          if (res.data) {
+            alert(res.data);
+          } else alert("回傳錯誤");
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    },
+  },
+};
 </script>
 
 <style scoped>
