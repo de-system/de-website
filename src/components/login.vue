@@ -3,13 +3,13 @@
     <img src="@/assets/original.png" />
     <form @submit.prevent="login">
       <br />
-      <label class="lab">Email</label>
+      <label class="lab">Account</label>
       <br />
       <input
         class="input"
         type="text"
         name=""
-        placeholder="請輸入Email"
+        placeholder="請輸入帳號"
         size="10"
         v-model="userName"
         required
@@ -35,27 +35,26 @@
 export default {
   data() {
     return {
-      userName: "김태연",
+      userName: "",
       password: "",
     };
   },
   methods: {
     login() {
       //-- write login authencation logic here! --
-      this.axios.post("http://127.0.0.1:3030/auth/login",{
-      account: this.userName,        
-      password: this.password,
-      })
-      .then((res) =>{
-      if (res.data) this.$router.push("pastsales")
-      else alert("login failed")
-      })
-      .catch(function (error) {
-      console.log(error);
-      });
-    },
-    getUserName() {
-      return this.userName;
+      this.axios
+        .post("http://127.0.0.1:3030/auth/login", {
+          account: this.userName,
+          password: this.password,
+        })
+        .then((res) => {
+          if (res.data) this.$router.push("pastsales");
+          else alert("login failed");
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+
     },
   },
 };
