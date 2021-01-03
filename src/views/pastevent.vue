@@ -16,6 +16,9 @@
         style="width : 35vw; height: 35vh; padding: 0px; left: 55%"
       />
     </form>
+    <form action="post" id="indexform">
+      <Tabbb />
+    </form>
   </div>
 </template>
 
@@ -24,6 +27,7 @@ import topbar from "../components/topbar";
 import sidebar from "../components/sidebar";
 import Pie from "../components/piechart";
 import Bar from "../components/barchart";
+import Tabbb from "../components/barebonetab";
 
 export default {
   name: "pastevent",
@@ -32,6 +36,7 @@ export default {
     sidebar,
     Pie,
     Bar,
+    Tabbb,
   },
   data() {
     return {
@@ -57,7 +62,7 @@ export default {
   position: fixed;
 
   width: 35vw;
-  height: 45vh;
+  height: 42vh;
   border-radius: 8px;
   background-color: #d8c0a6;
   box-shadow: 1px 1px 5px 1px #c3baba;
@@ -77,11 +82,28 @@ export default {
   position: fixed;
 
   width: 35vw;
-  height: 45vh;
+  height: 42vh;
   border-radius: 8px;
   background-color: #d8c0a6;
   box-shadow: 1px 1px 5px 1px #c3baba;
   padding: 12px;
+
+  text-align: center;
+  color: white;
+}
+
+#indexform {
+  margin: 0%;
+  top: 65%;
+  left: 20%;
+  position: fixed;
+
+  width: 73vw;
+  height: 25vh;
+  /* border-radius: 8px; */
+  /* background-color: #d8c0a6; */
+  /* box-shadow: 1px 1px 5px 1px #c3baba; */
+  /* padding: 12px; */
 
   text-align: center;
   color: white;

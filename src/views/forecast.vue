@@ -9,13 +9,19 @@
         name=""
         id="rfmdropdownlist"
         v-model="rfmformdata.strategyselected"
+        @change="surveyclick()"
       >
         <option value="buyonegetone">買一送一</option>
-        <option value="survey">寄調查問卷</option>
+        <option value="survey">調查問卷</option>
         <option value="discount">送折扣卷</option>
       </select>
-      <span style="padding-left: 2vw;">RFM分析 </span>
-      <select name="" id="rfmdropdownlist" v-model="rfmformdata.select">
+      <span style="padding-left: 2vw;" v-if="isShow">RFM分析 </span>
+      <select
+        name=""
+        id="rfmdropdownlist"
+        v-model="rfmformdata.select"
+        v-if="isShow"
+      >
         <option value="r">最近購買日Recency</option>
         <option value="f">購買頻率Frequency</option>
         <option value="m">購買金額Monetary value</option>
@@ -101,6 +107,7 @@ export default {
       perPage: 5,
       currentPage: 1,
       items: [{}],
+      isShow: true,
     };
   },
   name: "forecast",
@@ -115,8 +122,35 @@ export default {
   },
   methods: {
     // ...mapActions(["fetchCost"]),
+    surveyclick() {
+      if (this.rfmformdata.strategyselected == "survey") {
+        this.isShow = false;
+      }
+    },
     rfmchange() {
       this.items = [];
+      if (this.rfmformdata.strategyselected == "survey") {
+        this.axios
+          .post("http://127.0.0.1:3030/rfm/survivalRate", {})
+          .then((res) => {
+            if (res.data) {
+              for (let i = 0; i < res.data.customerId.length; i++) {
+                this.items.push({
+                  會員ID: res.data.customerId[i],
+                  姓名: res.data.name[i],
+                  最後購買日期: res.data.lastTime[i],
+                  lineID: res.data.lineId[i],
+                });
+                this.rfmformdata.st = "";
+                this.rfmformdata.st_bi = "";
+              }
+              // alert(JSON.stringify(res.data));
+            } else alert("回傳錯誤");
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
+      }
       if (this.rfmformdata.select == "r") {
         if (this.rfmformdata.strategyselected == "buyonegetone") {
           this.axios
@@ -127,7 +161,7 @@ export default {
                   this.items.push({
                     會員ID: res.data.customerId[i],
                     姓名: res.data.name[i],
-                    年齡: res.data.age[i],
+                    購買日期: res.data.time[i],
                     lineID: res.data.lineId[i],
                   });
                   this.rfmformdata.st = res.data.st1;
@@ -148,32 +182,11 @@ export default {
                   this.items.push({
                     會員ID: res.data.customerId[i],
                     姓名: res.data.name[i],
-                    年齡: res.data.age[i],
+                    購買日期: res.data.time[i],
                     lineID: res.data.lineId[i],
                   });
                   this.rfmformdata.st = res.data.st2;
                   this.rfmformdata.st_bi = res.data.st_bi2;
-                }
-                // alert(JSON.stringify(res.data));
-              } else alert("回傳錯誤");
-            })
-            .catch(function(error) {
-              console.log(error);
-            });
-        } else {
-          this.axios
-            .post("http://127.0.0.1:3030/rfm/R", {})
-            .then((res) => {
-              if (res.data) {
-                for (let i = 0; i < res.data.customerId.length; i++) {
-                  this.items.push({
-                    會員ID: res.data.customerId[i],
-                    姓名: res.data.name[i],
-                    年齡: res.data.age[i],
-                    lineID: res.data.lineId[i],
-                  });
-                  this.rfmformdata.st = "";
-                  this.rfmformdata.st_bi = "";
                 }
                 // alert(JSON.stringify(res.data));
               } else alert("回傳錯誤");
@@ -225,27 +238,6 @@ export default {
             .catch(function(error) {
               console.log(error);
             });
-        } else {
-          this.axios
-            .post("http://127.0.0.1:3030/rfm/M", {})
-            .then((res) => {
-              if (res.data) {
-                for (let i = 0; i < res.data.customerId.length; i++) {
-                  this.items.push({
-                    會員ID: res.data.customerId[i],
-                    姓名: res.data.name[i],
-                    消費金額: res.data.payment[i],
-                    lineID: res.data.lineId[i],
-                  });
-                  this.rfmformdata.st = "";
-                  this.rfmformdata.st_bi = "";
-                }
-                // alert(JSON.stringify(res.data));
-              } else alert("回傳錯誤");
-            })
-            .catch(function(error) {
-              console.log(error);
-            });
         }
       } else {
         if (this.rfmformdata.strategyselected == "buyonegetone") {
@@ -283,27 +275,6 @@ export default {
                   });
                   this.rfmformdata.st = res.data.st2;
                   this.rfmformdata.st_bi = res.data.st_bi2;
-                }
-                // alert(JSON.stringify(res.data));
-              } else alert("回傳錯誤");
-            })
-            .catch(function(error) {
-              console.log(error);
-            });
-        } else {
-          this.axios
-            .post("http://127.0.0.1:3030/rfm/F", {})
-            .then((res) => {
-              if (res.data) {
-                for (let i = 0; i < res.data.customerId.length; i++) {
-                  this.items.push({
-                    會員ID: res.data.customerId[i],
-                    姓名: res.data.name[i],
-                    消費數量: res.data.amount[i],
-                    lineID: res.data.lineId[i],
-                  });
-                  this.rfmformdata.st = "";
-                  this.rfmformdata.st_bi = "";
                 }
                 // alert(JSON.stringify(res.data));
               } else alert("回傳錯誤");
