@@ -74,7 +74,7 @@ export default {
         this.stock2 -= parseInt(this.amount.select);
       }
 
-      alert("按下送出");
+      alert("成功調撥");
       this.axios
         .post("http://127.0.0.1:3030/updateCounter/update", {
           counterId: this.formdata.select,
