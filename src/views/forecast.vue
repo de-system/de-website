@@ -325,12 +325,12 @@ export default {
   margin: 0%;
 }
 #rfmHeader {
-  /* border: solid 2px black; */
+  border: solid 2px black;
   display: inline-block;
   margin: 0%;
   top: 21%;
   left: 20%;
-  width: 50vw;
+  width: 60vw;
   position: fixed;
   color: #c9a175;
   text-align: left;
