@@ -3,17 +3,37 @@
     <topbar />
     <sidebar />
     <div id="rfmHeader">
-      <span>行銷預測分析</span>
+      <h4>行銷預測分析</h4>
+      <span style="padding-left: 2vw;">過去行銷策略</span>
       <select
         name=""
         id="rfmdropdownlist"
-        v-model="formdata.select"
-        @change="change()"
+        v-model="rfmformdata.strategyselected"
+        @change="surveyclick()"
       >
-        <option value="1">最近購買日Recency</option>
-        <option value="2">購買頻率Frequency</option>
-        <option value="3">購買金額Monetary value</option>
+        <option value="buyonegetone">買一送一</option>
+        <option value="survey">調查問卷</option>
+        <option value="discount">送折扣卷</option>
       </select>
+      <span style="padding-left: 2vw;" v-if="isShow">RFM分析 </span>
+      <select
+        name=""
+        id="rfmdropdownlist"
+        v-model="rfmformdata.select"
+        v-if="isShow"
+      >
+        <option value="r">最近購買日Recency</option>
+        <option value="f">購買頻率Frequency</option>
+        <option value="m">購買金額Monetary value</option>
+      </select>
+      <button
+        type="button"
+        style="margin-left: 2vw;"
+        @click="rfmchange()"
+        id="btn"
+      >
+        確定
+      </button>
     </div>
     <b-table
       id="rfmtable"
@@ -55,6 +75,14 @@
         送出策略
       </button>
     </form>
+    <form id="biform">
+      <h5 style="padding-left: 3vw; padding-top: 2vh;">
+        損益平衡回應率: {{ rfmformdata.st }}
+      </h5>
+      <h5 style="padding-left: 3vw; padding-top: 1vh;">
+        損益平衡指數: {{ rfmformdata.st_bi }}
+      </h5>
+    </form>
   </div>
 </template>
 
@@ -66,21 +94,20 @@ import sidebar from "../components/sidebar";
 export default {
   data() {
     return {
+      rfmformdata: {
+        strategyselected: "",
+        select: "",
+        st: "",
+        st_bi: "",
+      },
       formdata: {
         select: "",
       },
       cost: "",
       perPage: 5,
       currentPage: 1,
-      items: [
-        {
-          會員ID: "",
-          姓名: "",
-          年齡: "",
-          lineID: "",
-          Email: "",
-        },
-      ],
+      items: [{}],
+      isShow: true,
     };
   },
   name: "forecast",
@@ -88,8 +115,176 @@ export default {
     topbar,
     sidebar,
   },
+  computed: {
+    rows() {
+      return this.items.length;
+    },
+  },
   methods: {
     // ...mapActions(["fetchCost"]),
+    surveyclick() {
+      if (this.rfmformdata.strategyselected == "survey") {
+        this.isShow = false;
+      }
+    },
+    rfmchange() {
+      this.items = [];
+      if (this.rfmformdata.strategyselected == "survey") {
+        this.axios
+          .post("http://127.0.0.1:3030/rfm/survivalRate", {})
+          .then((res) => {
+            if (res.data) {
+              for (let i = 0; i < res.data.customerId.length; i++) {
+                this.items.push({
+                  會員ID: res.data.customerId[i],
+                  姓名: res.data.name[i],
+                  最後購買日期: res.data.lastTime[i],
+                  lineID: res.data.lineId[i],
+                });
+                this.rfmformdata.st = "";
+                this.rfmformdata.st_bi = "";
+              }
+              // alert(JSON.stringify(res.data));
+            } else alert("回傳錯誤");
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
+      }
+      if (this.rfmformdata.select == "r") {
+        if (this.rfmformdata.strategyselected == "buyonegetone") {
+          this.axios
+            .post("http://127.0.0.1:3030/rfm/R", {})
+            .then((res) => {
+              if (res.data) {
+                for (let i = 0; i < res.data.customerId.length; i++) {
+                  this.items.push({
+                    會員ID: res.data.customerId[i],
+                    姓名: res.data.name[i],
+                    購買日期: res.data.time[i],
+                    lineID: res.data.lineId[i],
+                  });
+                  this.rfmformdata.st = res.data.st1;
+                  this.rfmformdata.st_bi = res.data.st_bi1;
+                }
+                // alert(JSON.stringify(res.data));
+              } else alert("回傳錯誤");
+            })
+            .catch(function(error) {
+              console.log(error);
+            });
+        } else if (this.rfmformdata.strategyselected == "discount") {
+          this.axios
+            .post("http://127.0.0.1:3030/rfm/R", {})
+            .then((res) => {
+              if (res.data) {
+                for (let i = 0; i < res.data.customerId.length; i++) {
+                  this.items.push({
+                    會員ID: res.data.customerId[i],
+                    姓名: res.data.name[i],
+                    購買日期: res.data.time[i],
+                    lineID: res.data.lineId[i],
+                  });
+                  this.rfmformdata.st = res.data.st2;
+                  this.rfmformdata.st_bi = res.data.st_bi2;
+                }
+                // alert(JSON.stringify(res.data));
+              } else alert("回傳錯誤");
+            })
+            .catch(function(error) {
+              console.log(error);
+            });
+        }
+      } else if (this.rfmformdata.select == "m") {
+        if (this.rfmformdata.strategyselected == "buyonegetone") {
+          this.axios
+            .post("http://127.0.0.1:3030/rfm/M", {})
+            .then((res) => {
+              if (res.data) {
+                for (let i = 0; i < res.data.customerId.length; i++) {
+                  this.items.push({
+                    會員ID: res.data.customerId[i],
+                    姓名: res.data.name[i],
+                    消費金額: res.data.payment[i],
+                    lineID: res.data.lineId[i],
+                  });
+                  this.rfmformdata.st = res.data.st1;
+                  this.rfmformdata.st_bi = res.data.st_bi1;
+                }
+                // alert(JSON.stringify(res.data));
+              } else alert("回傳錯誤");
+            })
+            .catch(function(error) {
+              console.log(error);
+            });
+        } else if (this.rfmformdata.strategyselected == "discount") {
+          this.axios
+            .post("http://127.0.0.1:3030/rfm/M", {})
+            .then((res) => {
+              if (res.data) {
+                for (let i = 0; i < res.data.customerId.length; i++) {
+                  this.items.push({
+                    會員ID: res.data.customerId[i],
+                    姓名: res.data.name[i],
+                    消費金額: res.data.payment[i],
+                    lineID: res.data.lineId[i],
+                  });
+                  this.rfmformdata.st = res.data.st2;
+                  this.rfmformdata.st_bi = res.data.st_bi2;
+                }
+                // alert(JSON.stringify(res.data));
+              } else alert("回傳錯誤");
+            })
+            .catch(function(error) {
+              console.log(error);
+            });
+        }
+      } else {
+        if (this.rfmformdata.strategyselected == "buyonegetone") {
+          this.axios
+            .post("http://127.0.0.1:3030/rfm/F", {})
+            .then((res) => {
+              if (res.data) {
+                for (let i = 0; i < res.data.customerId.length; i++) {
+                  this.items.push({
+                    會員ID: res.data.customerId[i],
+                    姓名: res.data.name[i],
+                    消費數量: res.data.amount[i],
+                    lineID: res.data.lineId[i],
+                  });
+                  this.rfmformdata.st = res.data.st1;
+                  this.rfmformdata.st_bi = res.data.st_bi1;
+                }
+                // alert(JSON.stringify(res.data));
+              } else alert("回傳錯誤");
+            })
+            .catch(function(error) {
+              console.log(error);
+            });
+        } else if (this.rfmformdata.strategyselected == "discount") {
+          this.axios
+            .post("http://127.0.0.1:3030/rfm/F", {})
+            .then((res) => {
+              if (res.data) {
+                for (let i = 0; i < res.data.customerId.length; i++) {
+                  this.items.push({
+                    會員ID: res.data.customerId[i],
+                    姓名: res.data.name[i],
+                    消費數量: res.data.amount[i],
+                    lineID: res.data.lineId[i],
+                  });
+                  this.rfmformdata.st = res.data.st2;
+                  this.rfmformdata.st_bi = res.data.st_bi2;
+                }
+                // alert(JSON.stringify(res.data));
+              } else alert("回傳錯誤");
+            })
+            .catch(function(error) {
+              console.log(error);
+            });
+        }
+      }
+    },
     change() {
       this.axios
         .post("http://127.0.0.1:3030/cost/cost", {
@@ -130,14 +325,16 @@ export default {
   margin: 0%;
 }
 #rfmHeader {
+  /* border: solid 2px black; */
   display: inline-block;
   margin: 0%;
   top: 21%;
   left: 20%;
-  width: 25vw;
+  width: 50vw;
   position: fixed;
   color: #c9a175;
-  padding-left: 2vw;
+  text-align: left;
+  /* padding-left: 1vw; */
 }
 #form {
   margin: 0%;
@@ -153,6 +350,23 @@ export default {
   padding: 12px;
 
   text-align: center;
+  color: white;
+}
+#biform {
+  margin: 0%;
+  top: 30%;
+  left: 70%;
+  position: fixed;
+
+  width: 20vw;
+  height: 20vh;
+  border-radius: 8px;
+  background-color: #d8c0a6;
+  box-shadow: 1px 1px 5px 1px #c3baba;
+  padding: 12px;
+
+  text-align: left;
+  padding-left: 1vw;
   color: white;
 }
 #rfmdropdownlist {
@@ -204,12 +418,12 @@ export default {
 
 #rfmtable {
   margin: 0%;
-  top: 25%;
+  top: 30%;
   left: 20%;
   position: fixed;
 
   width: 45vw;
-  height: 60vh;
+  height: 55vh;
   border-radius: 8px;
   background-color: #d8c0a6;
   box-shadow: 1px 1px 5px 1px #c3baba;
@@ -217,5 +431,32 @@ export default {
 
   text-align: center;
   color: white;
+}
+
+#page {
+  margin: 0%;
+  top: 88%;
+  left: 38%;
+  position: fixed;
+}
+
+#btn {
+  width: 4vw;
+  border: #c3baba;
+  border-radius: 8px;
+  background-color: white;
+  box-shadow: 1px 3px 5px 1px #c3baba;
+  text-align: center;
+  transition: 0.25s;
+}
+
+#btn:hover {
+  width: 4vw;
+  border: #c3baba;
+  border-radius: 8px;
+  background-color: #c9a175;
+  color: white;
+  box-shadow: 1px 3px 5px 1px #c3baba;
+  text-align: center;
 }
 </style>

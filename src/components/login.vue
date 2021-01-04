@@ -11,7 +11,7 @@
         name=""
         placeholder="請輸入帳號"
         size="10"
-        v-model="userName"
+        v-model="user.account"
         required
       />
       <br />
@@ -23,7 +23,7 @@
         name=""
         placeholder="請輸入密碼"
         size="20"
-        v-model="password"
+        v-model="user.password"
         required
       />
       <br />
@@ -35,17 +35,23 @@
 export default {
   data() {
     return {
-      userName: "",
-      password: "",
+      user: {
+        account: '',
+        password: '',
+      },
     };
   },
   methods: {
     login() {
+       this.$store.commit({
+        type: 'setUserData',
+        userData: this.user,
+      });
       //-- write login authencation logic here! --
       this.axios
         .post("http://127.0.0.1:3030/auth/login", {
-          account: this.userName,
-          password: this.password,
+          account: this.user.account,
+          password: this.user.password,
         })
         .then((res) => {
           if (res.data) this.$router.push("pastsales");
