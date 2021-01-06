@@ -63,7 +63,6 @@ export default {
           顧客年齡: "",
           line_ID: "",
           日期: "",
-          顧客回應: "",
         },
       ],
       perPage: 5,
@@ -90,7 +89,6 @@ export default {
                 顧客年齡: res.data.age[i],
                 line_ID: res.data.lineId[i],
                 日期: res.data.time[i],
-                顧客回應: "",
               });
             }
           } else alert("回傳錯誤");
