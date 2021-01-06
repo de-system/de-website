@@ -79,7 +79,7 @@ export default {
     change() {
       this.items = [];
       this.axios
-        .post("http://127.0.0.1:3030/getLineCus/customer", {
+        .post("https://de-backend.herokuapp.com/getLineCus/customer", {
           month: this.formdata.select,
         })
         .then((res) => {

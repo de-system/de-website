@@ -201,7 +201,7 @@ export default {
   },
   mounted() {
     this.axios
-      .get("http://127.0.0.1:3030/report/info")
+      .get("https://de-backend.herokuapp.com/report/info")
       .then((res) => {
         if (res.data) {
           //alert(JSON.stringify(res.data[0]));
@@ -262,7 +262,7 @@ export default {
         console.log(error);
       });
     this.axios
-      .get("http://127.0.0.1:3030/report/customerIndex")
+      .get("https://de-backend.herokuapp.com/report/customerIndex")
       .then((res) => {
         if (res.data) {
           //alert(JSON.stringify(res.data));

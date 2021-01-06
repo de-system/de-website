@@ -40,7 +40,7 @@ export default new Vuex.Store({
   // actions: {
   //   fetchCus: async ({ commit }) => {
   //     let payload =[];
-  //     //const api = "http://127.0.0.1:3030/cost/cost";
+  //     //const api = "https://de-backend.herokuapp.com/cost/cost";
   //     commit("fetchCost");
   //   },
   // },

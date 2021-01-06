@@ -47,7 +47,7 @@ export default {
 
   mounted() {
     this.axios
-      .get("http://127.0.0.1:3030/inventoryManage/orderList")
+      .get("https://de-backend.herokuapp.com/inventoryManage/orderList")
       .then((res) => {
         if (res.data) {
           // alert(JSON.stringify(res.data));

@@ -65,7 +65,7 @@ export default {
   methods: {
     counterManage() {
       this.axios
-        .post("http://127.0.0.1:3030/counter/manageInventory", {})
+        .post("https://de-backend.herokuapp.com/counter/manageInventory", {})
         .then((res) => {
           if (res.data) {
             alert(res.data);

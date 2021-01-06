@@ -49,7 +49,7 @@ export default {
       });
       //-- write login authencation logic here! --
       this.axios
-        .post("http://127.0.0.1:3030/auth/login", {
+        .post("https://de-backend.herokuapp.com/auth/login", {
           account: this.user.account,
           password: this.user.password,
         })

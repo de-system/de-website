@@ -131,7 +131,7 @@ export default {
       this.items = [];
       if (this.rfmformdata.strategyselected == "survey") {
         this.axios
-          .post("http://127.0.0.1:3030/rfm/survivalRate", {})
+          .post("https://de-backend.herokuapp.com/rfm/survivalRate", {})
           .then((res) => {
             if (res.data) {
               for (let i = 0; i < res.data.customerId.length; i++) {
@@ -154,7 +154,7 @@ export default {
       if (this.rfmformdata.select == "r") {
         if (this.rfmformdata.strategyselected == "buyonegetone") {
           this.axios
-            .post("http://127.0.0.1:3030/rfm/R", {})
+            .post("https://de-backend.herokuapp.com/rfm/R", {})
             .then((res) => {
               if (res.data) {
                 for (let i = 0; i < res.data.customerId.length; i++) {
@@ -175,7 +175,7 @@ export default {
             });
         } else if (this.rfmformdata.strategyselected == "discount") {
           this.axios
-            .post("http://127.0.0.1:3030/rfm/R", {})
+            .post("https://de-backend.herokuapp.com/rfm/R", {})
             .then((res) => {
               if (res.data) {
                 for (let i = 0; i < res.data.customerId.length; i++) {
@@ -198,7 +198,7 @@ export default {
       } else if (this.rfmformdata.select == "m") {
         if (this.rfmformdata.strategyselected == "buyonegetone") {
           this.axios
-            .post("http://127.0.0.1:3030/rfm/M", {})
+            .post("https://de-backend.herokuapp.com/rfm/M", {})
             .then((res) => {
               if (res.data) {
                 for (let i = 0; i < res.data.customerId.length; i++) {
@@ -219,7 +219,7 @@ export default {
             });
         } else if (this.rfmformdata.strategyselected == "discount") {
           this.axios
-            .post("http://127.0.0.1:3030/rfm/M", {})
+            .post("https://de-backend.herokuapp.com/rfm/M", {})
             .then((res) => {
               if (res.data) {
                 for (let i = 0; i < res.data.customerId.length; i++) {
@@ -242,7 +242,7 @@ export default {
       } else {
         if (this.rfmformdata.strategyselected == "buyonegetone") {
           this.axios
-            .post("http://127.0.0.1:3030/rfm/F", {})
+            .post("https://de-backend.herokuapp.com/rfm/F", {})
             .then((res) => {
               if (res.data) {
                 for (let i = 0; i < res.data.customerId.length; i++) {
@@ -263,7 +263,7 @@ export default {
             });
         } else if (this.rfmformdata.strategyselected == "discount") {
           this.axios
-            .post("http://127.0.0.1:3030/rfm/F", {})
+            .post("https://de-backend.herokuapp.com/rfm/F", {})
             .then((res) => {
               if (res.data) {
                 for (let i = 0; i < res.data.customerId.length; i++) {
@@ -287,7 +287,7 @@ export default {
     },
     change() {
       this.axios
-        .post("http://127.0.0.1:3030/cost/cost", {
+        .post("https://de-backend.herokuapp.com/cost/cost", {
           strategyId: this.formdata.select,
         })
         .then((res) => {
@@ -302,7 +302,7 @@ export default {
     },
     submitStrategy() {
       this.axios
-        .post("http://127.0.0.1:3030/linebot/bot", {
+        .post("https://de-backend.herokuapp.com/linebot/bot", {
           strategyId: this.formdata.select,
         })
         .then((res) => {
