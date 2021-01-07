@@ -80,10 +80,8 @@ export default {
   margin-top: 20vh;
   margin-left: 45vw;
   transform: translate(-50%, -50%);
-
   /* text-align: center; */
 }
-
 .lab {
   /* border: black solid 2px; */
   margin: 0%;
@@ -94,13 +92,11 @@ export default {
   /* margin-right: 30px; */
   color: #8d8484;
 }
-
 .input {
   /* margin-left: 10px; */
   width: 10vw;
   height: 30px;
 }
-
 .login input[type="text"],
 .login input[type="password"] {
   border: 0;

@@ -104,7 +104,6 @@ export default {
   width: 2vw;
   height: 3.5vh;
 }
-
 #routes {
   text-decoration: none;
   color: #d6b693;

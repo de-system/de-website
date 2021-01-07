@@ -125,6 +125,8 @@ export default {
     surveyclick() {
       if (this.rfmformdata.strategyselected == "survey") {
         this.isShow = false;
+      } else {
+        this.isShow = true;
       }
     },
     rfmchange() {
@@ -239,6 +241,11 @@ export default {
               console.log(error);
             });
         }
+      } else if (
+        this.rfmformdata.select == "" ||
+        this.rfmformdata.strategyselected == ""
+      ) {
+        alert("有選項尚未填入");
       } else {
         if (this.rfmformdata.strategyselected == "buyonegetone") {
           this.axios
@@ -330,7 +337,7 @@ export default {
   margin: 0%;
   top: 21%;
   left: 20%;
-  width: 50vw;
+  width: 60vw;
   position: fixed;
   color: #c9a175;
   text-align: left;
@@ -347,7 +354,7 @@ export default {
   border-radius: 8px;
   background-color: #d8c0a6;
   box-shadow: 1px 1px 5px 1px #c3baba;
-  padding: 12px;
+  padding: 1vh;
 
   text-align: center;
   color: white;
