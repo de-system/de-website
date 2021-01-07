@@ -16,10 +16,10 @@
           <h6 id="user">{{ user.account }}</h6>
           <img id="member_logo" src="@/assets/businessman.png" />
           <b-nav-item-dropdown right>
-            <template #button-content>
+            <template #button-content >
               <img id="bell_logo" src="@/assets/bell.png" />
             </template>
-            <b-dropdown-item
+            <b-dropdown-item 
               ><router-link to="/inventory" id="routes"
                 >即將過期商品存貨過多！</router-link
               ></b-dropdown-item

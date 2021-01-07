@@ -64,7 +64,7 @@ export default {
             this.item.push({
               化妝名稱: res.data[1][i].pName,
               數量: res.data[1][i].totalStock,
-              存貨成本:res.data[1][i].totalStock*50
+              存貨成本:res.data[1][i].totalStock*10
             });
           }
         } else alert("回傳錯誤");

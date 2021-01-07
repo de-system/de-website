@@ -58,7 +58,7 @@ export default {
               收貨日期: res.data[i].receiveDate,
               花油數量: res.data[i].EOQf,
               酒精數量: res.data[i].EOQa,
-              成本: res.data[i].cost,
+              進貨成本: res.data[i].cost,
             });
           }
         } else alert("回傳錯誤");
