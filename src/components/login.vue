@@ -3,15 +3,15 @@
     <img src="@/assets/original.png" />
     <form @submit.prevent="login">
       <br />
-      <label class="lab">Email</label>
+      <label class="lab">Account</label>
       <br />
       <input
         class="input"
         type="text"
         name=""
-        placeholder="請輸入Email"
+        placeholder="請輸入帳號"
         size="10"
-        v-model="userName"
+        v-model="user.account"
         required
       />
       <br />
@@ -23,7 +23,7 @@
         name=""
         placeholder="請輸入密碼"
         size="20"
-        v-model="password"
+        v-model="user.password"
         required
       />
       <br />
@@ -35,17 +35,23 @@
 export default {
   data() {
     return {
-      userName: "",
-      password: "",
+      user: {
+        account: "",
+        password: "",
+      },
     };
   },
   methods: {
     login() {
+      this.$store.commit({
+        type: "setUserData",
+        userData: this.user,
+      });
       //-- write login authencation logic here! --
       this.axios
-        .post("http://127.0.0.1:3030/auth/login", {
-          account: this.userName,
-          password: this.password,
+        .post("https://de-backend.herokuapp.com/auth/login", {
+          account: this.user.account,
+          password: this.user.password,
         })
         .then((res) => {
           if (res.data) this.$router.push("pastsales");
@@ -73,10 +79,8 @@ export default {
   margin-top: 20vh;
   margin-left: 45vw;
   transform: translate(-50%, -50%);
-
   /* text-align: center; */
 }
-
 .lab {
   /* border: black solid 2px; */
   margin: 0%;
@@ -87,13 +91,11 @@ export default {
   /* margin-right: 30px; */
   color: #8d8484;
 }
-
 .input {
   /* margin-left: 10px; */
   width: 10vw;
   height: 30px;
 }
-
 .login input[type="text"],
 .login input[type="password"] {
   border: 0;

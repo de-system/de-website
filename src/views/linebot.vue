@@ -63,7 +63,6 @@ export default {
           顧客年齡: "",
           line_ID: "",
           日期: "",
-          顧客回應: "",
         },
       ],
       perPage: 5,
@@ -79,7 +78,7 @@ export default {
     change() {
       this.items = [];
       this.axios
-        .post("http://127.0.0.1:3030/getLineCus/customer", {
+        .post("https://de-backend.herokuapp.com/getLineCus/customer", {
           month: this.formdata.select,
         })
         .then((res) => {
@@ -90,7 +89,6 @@ export default {
                 顧客年齡: res.data.age[i],
                 line_ID: res.data.lineId[i],
                 日期: res.data.time[i],
-                顧客回應: "",
               });
             }
           } else alert("回傳錯誤");
