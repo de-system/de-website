@@ -12,7 +12,12 @@
       smallstriped
       hover
       :items="items"
-    ></b-table>
+      :fields="fields"
+    >
+     <template v-slot:cell(actions)="d">
+      <button  v-if="d.item.訂單編號==1" @click="update(d)" :ref="'btn' + d.index">取消訂單</button>
+    </template>
+    </b-table>
     <b-pagination
       class="customPagination"
       id="page"
@@ -37,6 +42,24 @@ export default {
       perPage: 5,
       currentPage: 1,
       items: [],
+      fields: [
+      {
+        key: "訂單編號",
+      },
+      {
+        key: "下訂日期",
+      },{
+        key: "收貨日期",
+      },{
+        key: "花油數量",
+      },{
+        key: "酒精數量",
+      },
+      {
+        key: "進貨成本",
+      },
+      { key: "actions" },
+    ]
     };
   },
   computed: {
@@ -45,7 +68,14 @@ export default {
     },
   },
 
-  mounted() {
+ methods: {
+    update(d) {
+      this.output = d;
+      this.$refs["btn" + d.index].disabled = true     
+      this.$refs["btn" + d.index].textContent = "已取消";
+    },
+  },
+  mounted() {  
     this.axios
       .get("https://de-backend.herokuapp.com/inventoryManage/orderList")
       .then((res) => {
