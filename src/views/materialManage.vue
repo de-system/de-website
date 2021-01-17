@@ -130,7 +130,7 @@ export default {
     handleOk(title, index) {
       this.items.splice(index, 1);
 
-      alert("已成功刪除訂單!\n" + `訂單編號: ${title}`);
+      alert("已成功刪除訂單!\n" + `${title}`);
     },
     resetInfoModal() {
       this.infoModal.title = "";
