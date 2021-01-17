@@ -8,11 +8,11 @@
             <li id="sideBtn">
               <router-link to="/forecast" id="routes">銷量預測分析</router-link>
             </li>
-            <li id="sideBtn">
+            <!-- <li id="sideBtn">
               <router-link to="/pastsales" id="routes"
                 >過去銷量分析</router-link
               >
-            </li>
+            </li> -->
             <li id="sideBtn">
               <router-link to="/pastevent" id="routes"
                 >過去活動績效</router-link
@@ -46,7 +46,9 @@
           <img src="@/assets/cashier.png" alt="" />
           <ul id="sidefont">
             <li id="sideBtn">
-              <router-link to="/counter" id="routes">分櫃存貨調撥</router-link>
+              <router-link to="/counter" id="routes" @click="counterManage()"
+                >分櫃存貨調撥</router-link
+              >
             </li>
           </ul>
         </li>
@@ -56,7 +58,25 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {};
+  },
+  methods: {
+    counterManage() {
+      this.axios
+        .post("https://de-backend.herokuapp.com/counter/manageInventory", {})
+        .then((res) => {
+          if (res.data) {
+            alert(res.data);
+          } else alert("回傳錯誤");
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    },
+  },
+};
 </script>
 
 <style scoped>

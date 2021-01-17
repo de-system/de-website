@@ -13,13 +13,13 @@
 
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-          <h6 id="user">{{ userName }}</h6>
+          <h6 id="user">{{ user.account }}</h6>
           <img id="member_logo" src="@/assets/businessman.png" />
           <b-nav-item-dropdown right>
-            <template #button-content>
+            <template #button-content >
               <img id="bell_logo" src="@/assets/bell.png" />
             </template>
-            <b-dropdown-item
+            <b-dropdown-item 
               ><router-link to="/inventory" id="routes"
                 >即將過期商品存貨過多！</router-link
               ></b-dropdown-item
@@ -44,12 +44,25 @@
 
 <script>
 //import login from "@/components/login";
+// import { mapState } from "vuex";
 export default {
-  data() {
-    return {
-      userName: "김태연",
-    };
-  },
+  // data() {
+  //   return {
+  //     userName: "",
+  //   };
+  // },
+  //接vuex資料 使用import的mapState方法 接userName
+  computed: {
+    // ...mapState(["account"]),
+     user() {
+      // 這裡將取得方式改變成從 local storage 中取得使用者資訊
+      const userData = JSON.parse(localStorage.getItem("user"));
+      if (userData) {
+        return userData;
+      }
+      return "";
+    }
+  }
 };
 </script>
 
@@ -91,7 +104,6 @@ export default {
   width: 2vw;
   height: 3.5vh;
 }
-
 #routes {
   text-decoration: none;
   color: #d6b693;
