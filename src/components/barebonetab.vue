@@ -31,6 +31,11 @@
         v-bind:class="[activetab === 6 ? 'active' : '']"
         >十二月</a
       >
+      <a
+        v-on:click="activetab = 7"
+        v-bind:class="[activetab === 7 ? 'active' : '']"
+        >一月</a
+      >
     </div>
 
     <div class="content">
@@ -172,6 +177,29 @@
           >存活率：{{ index12[3] }}</label
         >
       </div>
+      <div v-if="activetab === 7" class="tabcontent">
+        <label :items="info1" style="padding-left: 1vw; "
+          >消費金額：{{ info1[1] }}</label
+        >
+        <label :items="info1" style="padding-left: 1vw; "
+          >消費數量：{{ info1[2] }}</label
+        >
+        <label :items="info1" style="padding-left: 1vw; "
+          >總成本：{{ info1[3] }}</label
+        >
+        <label :items="info1" style="padding-left: 1vw; "
+          >淨利：{{ info1[4] }}</label
+        >
+        <label :items="index1" style="padding-left: 1vw; "
+          >留存率：{{ index1[1] }}</label
+        >
+        <label :items="index1" style="padding-left: 1vw; "
+          >顧客流失率：{{ index1[2] }}</label
+        >
+        <label :items="index1" style="padding-left: 1vw; "
+          >存活率：{{ index1[3] }}</label
+        >
+      </div>
     </div>
   </div>
 </template>
@@ -197,6 +225,8 @@ export default {
       index11: [],
       info12: [],
       index12: [],
+      info1: [],
+      index1: [],
     };
   },
   mounted() {
@@ -204,7 +234,7 @@ export default {
       .get("https://de-backend.herokuapp.com/report/info")
       .then((res) => {
         if (res.data) {
-          //alert(JSON.stringify(res.data[0]));
+          alert(JSON.stringify(res.data[0]));
           // this.items.push({
           //   消費金額: 123,
           //   消費數量: this.info7[2],
@@ -256,6 +286,13 @@ export default {
             res.data[5].cost,
             res.data[5].net
           );
+          this.info1.push(
+            res.data[6].month,
+            res.data[6].payment,
+            res.data[6].amount,
+            res.data[6].cost,
+            res.data[6].net
+          );
         } else alert("回傳錯誤");
       })
       .catch(function(error) {
@@ -302,6 +339,12 @@ export default {
             res.data[5].retetionRate,
             res.data[5].defectionRate,
             res.data[5].surviveRate
+          );
+          this.index1.push(
+            res.data[6].month,
+            res.data[6].retetionRate,
+            res.data[6].defectionRate,
+            res.data[6].surviveRate
           );
         } else alert("回傳錯誤");
       })

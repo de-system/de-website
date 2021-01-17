@@ -54,7 +54,7 @@ export default {
           password: this.user.password,
         })
         .then((res) => {
-          if (res.data) this.$router.push("pastsales");
+          if (res.data) this.$router.push("forecast");
           else alert("login failed");
         })
         .catch(function(error) {
