@@ -194,7 +194,14 @@ export default {
     },
   },
 
-  mounted() {
+ methods: {
+    update(d) {
+      this.output = d;
+      this.$refs["btn" + d.index].disabled = true     
+      this.$refs["btn" + d.index].textContent = "已取消";
+    },
+  },
+  mounted() {  
     this.axios
       .get("https://de-backend.herokuapp.com/inventoryManage/orderList")
       .then((res) => {
@@ -207,7 +214,7 @@ export default {
               收貨日期: res.data[i].receiveDate,
               花油數量: res.data[i].EOQf,
               酒精數量: res.data[i].EOQa,
-              成本: res.data[i].cost,
+              進貨成本: res.data[i].cost,
               訂單狀態: "已到貨",
             });
           }

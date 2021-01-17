@@ -28,7 +28,6 @@ import sidebar from "../components/sidebar";
 import Pie from "../components/piechart";
 import Bar from "../components/barchart";
 import Tabbb from "../components/barebonetab";
-
 export default {
   name: "pastevent",
   components: {
@@ -60,14 +59,12 @@ export default {
   top: 20%;
   left: 58%;
   position: fixed;
-
   width: 35vw;
   height: 42vh;
   border-radius: 8px;
   background-color: #d8c0a6;
   box-shadow: 1px 1px 5px 1px #c3baba;
   padding: 12px;
-
   text-align: center;
   color: white;
 }
@@ -80,31 +77,26 @@ export default {
   top: 20%;
   left: 20%;
   position: fixed;
-
   width: 35vw;
   height: 42vh;
   border-radius: 8px;
   background-color: #d8c0a6;
   box-shadow: 1px 1px 5px 1px #c3baba;
   padding: 12px;
-
   text-align: center;
   color: white;
 }
-
 #indexform {
   margin: 0%;
   top: 65%;
   left: 20%;
   position: fixed;
-
   width: 73vw;
   height: 25vh;
   /* border-radius: 8px; */
   /* background-color: #d8c0a6; */
   /* box-shadow: 1px 1px 5px 1px #c3baba; */
   /* padding: 12px; */
-
   text-align: center;
   color: white;
 }

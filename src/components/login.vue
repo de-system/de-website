@@ -36,15 +36,15 @@ export default {
   data() {
     return {
       user: {
-        account: "",
-        password: "",
+        account: '',
+        password: '',
       },
     };
   },
   methods: {
     login() {
-      this.$store.commit({
-        type: "setUserData",
+       this.$store.commit({
+        type: 'setUserData',
         userData: this.user,
       });
       //-- write login authencation logic here! --
@@ -60,6 +60,7 @@ export default {
         .catch(function(error) {
           console.log(error);
         });
+
     },
   },
 };

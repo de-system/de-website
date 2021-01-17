@@ -3,7 +3,7 @@ import Vuex from "vuex";
 //import axios from "axios";
 
 Vue.use(Vuex);
-const localStoragePlugin = (store) => {
+const localStoragePlugin = store => {
   store.subscribe((mutation, { user }) => {
     // 當執行 setUserData 時才執行以下程式碼
     if (mutation.type === "setUserData") {
@@ -16,8 +16,8 @@ export default new Vuex.Store({
     user: {
       account: "",
       password: "",
-      isLogin: false,
-    },
+      isLogin: false
+    }
   },
   // state: {
   //   account: "",
@@ -29,7 +29,7 @@ export default new Vuex.Store({
       state.user.account = userData.account;
       state.user.password = userData.password;
       state.user.isLogin = true;
-    },
+    }
   },
   plugins: [localStoragePlugin],
   // mutations: {

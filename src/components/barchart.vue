@@ -21,36 +21,32 @@ export default {
             backgroundColor: "rgb(201, 160, 115)",
             data: [96, 84, 80, 89, 80, 91, 79],
           },
+          
         ],
       },
-      {
-        responsive: true,
-        maintainAspectRatio: false,
-        legend: {
-          display: false,
-        },
-        tooltips: {
-          callbacks: {
-            label: function(tooltipItem) {
-              return tooltipItem.yLabel;
-            },
-          },
-        },
-        scales: {
-          yAxes: [
-            {
-              display: true,
-              ticks: {
-                beginAtZero: true,
-                steps: 10,
-                stepValue: 5,
-                min: 70,
-              },
-            },
-          ],
-        },
-      }
-    );
+      { responsive: true, maintainAspectRatio: false ,
+       legend: {
+              display: false
+               },
+            tooltips: {
+            callbacks: {
+           label: function(tooltipItem) {
+                  return tooltipItem.yLabel;
+           }
+        }
+    },
+    scales: {
+                    yAxes: [{
+                            display: true,
+                            ticks: {
+                                beginAtZero: true,
+                                steps: 10,
+                                stepValue: 5,
+                                min: 70
+                            }
+                        }]
+                },
+    });
   },
 };
 </script>
