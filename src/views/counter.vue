@@ -76,7 +76,7 @@ export default {
 
       alert("成功調撥");
       this.axios
-        .post("http://127.0.0.1:3030/updateCounter/update", {
+        .post("https://de-backend.herokuapp.com/updateCounter/update", {
           counterId: this.formdata.select,
           amount1: this.stock1,
           amount2: this.stock2,
@@ -92,7 +92,7 @@ export default {
   },
   mounted() {
     this.axios
-      .get("http://127.0.0.1:3030/counter/manageInventory")
+      .get("https://de-backend.herokuapp.com/counter/manageInventory")
       .then((res) => {
         if (res.data) {
           this.stock1 = res.data.counterStock[0];

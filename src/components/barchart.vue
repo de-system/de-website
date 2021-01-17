@@ -5,7 +5,7 @@ export default {
   mounted() {
     this.renderChart(
       {
-        labels: ["7月", "8月", "9月", "10月", "11月", "12月"],
+        labels: ["7月", "8月", "9月", "10月", "11月", "12月", "1月"],
         datasets: [
           {
             type: "line",
@@ -14,12 +14,12 @@ export default {
             pointBackgroundColor: "#FFFFFF",
             backgroundColor: "#ffffff00",
             borderWidth: 1,
-            data: [96, 84, 80, 89, 80, 91],
+            data: [96, 84, 80, 89, 80, 91, 79],
           },
           {
             label: "月份",
             backgroundColor: "rgb(201, 160, 115)",
-            data: [96, 84, 80, 89, 80, 91],
+            data: [96, 84, 80, 89, 80, 91, 79],
           },
         ],
       },
