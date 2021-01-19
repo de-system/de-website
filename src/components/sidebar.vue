@@ -8,14 +8,14 @@
             <li id="sideBtn">
               <router-link to="/forecast" id="routes">銷量預測分析</router-link>
             </li>
-            <!-- <li id="sideBtn">
+            <li id="sideBtn">
               <router-link to="/pastsales" id="routes"
-                >過去銷量分析</router-link
+                >過去活動績效</router-link
               >
-            </li> -->
+            </li>
             <li id="sideBtn">
               <router-link to="/pastevent" id="routes"
-                >過去活動績效</router-link
+                >過去銷量分析</router-link
               >
             </li>
           </ul>

@@ -40,9 +40,17 @@
 
     <div class="content">
       <div v-if="activetab === 1" class="tabcontent">
+        <Barrr :label="'總收入'" :data="[Math.floor(info7[2]*1.2)*1000,info7[1]]" :width="200" :height="180" style=" float:left; display:inline"/>
+        <Barrr :label="'總銷量'" :data="[Math.floor(info7[2]*1.2),info7[2]]" :width="200" :height="180" style=" float:left; display:inline"/>
+        <Barrr :label="'總成本'" :data="[Math.floor(info7[2]*1.2)*300,info7[3]]" :width="200" :height="180" style=" float:left; display:inline"/>
+        <Barrr :label="'淨利'" :data="[Math.floor(info7[2]*1.2)*700,info7[4]]" :width="200" :height="180" style=" float:left; display:inline"/>
+        <Pbar :label="'顧客留存率'" :data="[100,index7[1].split('%')[0]]" :width="200" :height="180" style=" float:left; display:inline"/>
+        <Pbar :label="'顧客流失率'" :data="[0,index7[2].split('%')[0]]" :width="200" :height="180" style=" float:left; display:inline"/>
+        <Pbar :label="'顧客存活率'" :data="[100,index7[3].split('%')[0]]" :width="200" :height="180" style=" float:left; display:inline"/>
         <label :items="info7" style="padding-left: 1vw; "
-          >消費金額：{{ info7[1] }}</label
-        >
+          >本期指標數據：消費金額：{{ info7[1] }}
+         </label
+        > 
         <label :items="info7" style="padding-left: 1vw; "
           >消費數量：{{ info7[2] }}</label
         >
@@ -63,8 +71,15 @@
         >
       </div>
       <div v-if="activetab === 2" class="tabcontent">
+      <Barrr :label="'總收入'" :data="[info7[1],info8[1]]" :width="200" :height="180" style=" float:left; display:inline"/>
+      <Barrr :label="'總銷量'" :data="[info7[2],info8[2]]" :width="200" :height="180" style=" float:left; display:inline"/>
+      <Barrr :label="'總成本'" :data="[info7[3],info8[3]]" :width="200" :height="180" style=" float:left; display:inline"/>
+      <Barrr :label="'淨利'" :data="[info7[4],info8[4]]" :width="200" :height="180" style=" float:left; display:inline"/>
+      <Pbar  :label="'顧客留存率'" :data="[index7[1].split('%')[0],index8[1].split('%')[0]]" :width="200" :height="180" style=" float:left; display:inline"/>
+      <Pbar  :label="'顧客流失率'" :data="[index7[2].split('%')[0],index8[2].split('%')[0]]" :width="200" :height="180" style=" float:left; display:inline"/>
+      <Pbar  :label="'顧客存活率'" :data="[index7[3].split('%')[0],index8[3].split('%')[0]]" :width="200" :height="180" style=" float:left; display:inline"/>
         <label :items="info8" style="padding-left: 1vw; "
-          >消費金額：{{ info8[1] }}</label
+          >本期指標數據：消費金額：{{ info8[1] }}</label
         >
         <label :items="info8" style="padding-left: 1vw; "
           >消費數量：{{ info8[2] }}</label
@@ -83,11 +98,18 @@
         >
         <label :items="index8" style="padding-left: 1vw; "
           >存活率：{{ index8[3] }}</label
-        >
+        > 
       </div>
       <div v-if="activetab === 3" class="tabcontent">
+        <Barrr :label="'總收入'" :data="[info8[1],info9[1]]" :width="200" :height="180" style=" float:left; display:inline"/>
+        <Barrr :label="'總銷量'"  :data="[info8[2],info9[2]]" :width="200" :height="180" style=" float:left; display:inline"/>
+        <Barrr :label="'總成本'"  :data="[info8[3],info9[3]]" :width="200" :height="180" style=" float:left; display:inline"/>
+        <Barrr :label="'淨利'"  :data="[info8[4],info9[4]]" :width="200" :height="180" style=" float:left; display:inline"/>
+        <Pbar  :label="'顧客留存率'" :data="[index8[1].split('%')[0],index9[1].split('%')[0]]" :width="200" :height="180" style=" float:left; display:inline"/>
+        <Pbar  :label="'顧客流失率'" :data="[index8[2].split('%')[0],index9[2].split('%')[0]]" :width="200" :height="180" style=" float:left; display:inline"/>
+        <Pbar  :label="'顧客存活率'" :data="[index8[3].split('%')[0],index9[3].split('%')[0]]" :width="200" :height="180" style=" float:left; display:inline"/>
         <label :items="info9" style="padding-left: 1vw; "
-          >消費金額：{{ info9[1] }}</label
+          >本期指標數據：消費金額：{{ info9[1] }}</label
         >
         <label :items="info9" style="padding-left: 1vw; "
           >消費數量：{{ info9[2] }}</label
@@ -109,8 +131,15 @@
         >
       </div>
       <div v-if="activetab === 4" class="tabcontent">
+        <Barrr :label="'總收入'" :data="[info9[1],info10[1]]" :width="200" :height="180" style=" float:left; display:inline"/>
+        <Barrr :label="'總銷量'" :data="[info9[2],info10[2]]" :width="200" :height="180" style=" float:left; display:inline"/>
+        <Barrr :label="'總成本'" :data="[info9[3],info10[3]]" :width="200" :height="180" style=" float:left; display:inline"/>
+        <Barrr :label="'淨利'"  :data="[info9[4],info10[4]]" :width="200" :height="180" style=" float:left; display:inline"/>
+        <Pbar  :label="'顧客留存率'" :data="[index9[1].split('%')[0],index10[1].split('%')[0]]" :width="200" :height="180" style=" float:left; display:inline"/>
+        <Pbar  :label="'顧客流失率'" :data="[index9[2].split('%')[0],index10[2].split('%')[0]]" :width="200" :height="180" style=" float:left; display:inline"/>
+        <Pbar  :label="'顧客存活率'" :data="[index9[3].split('%')[0],index10[3].split('%')[0]]" :width="200" :height="180" style=" float:left; display:inline"/>
         <label :items="info10" style="padding-left: 1vw; "
-          >消費金額：{{ info10[1] }}</label
+          >本期指標數據：消費金額：{{ info10[1] }}</label
         >
         <label :items="info10" style="padding-left: 1vw; "
           >消費數量：{{ info10[2] }}</label
@@ -132,8 +161,15 @@
         >
       </div>
       <div v-if="activetab === 5" class="tabcontent">
+        <Barrr :label="'總收入'" :data="[info10[1],info11[1]]" :width="200" :height="180" style=" float:left; display:inline"/>
+        <Barrr :label="'總銷量'" :data="[info10[2],info11[2]]" :width="200" :height="180" style=" float:left; display:inline"/>
+        <Barrr :label="'總成本'" :data="[info10[3],info11[3]]" :width="200" :height="180" style=" float:left; display:inline"/>
+        <Barrr :label="'淨利'" :data="[info10[4],info11[4]]" :width="200" :height="180" style=" float:left; display:inline"/>
+        <Pbar  :label="'顧客留存率'" :data="[index10[1].split('%')[0],index11[1].split('%')[0]]" :width="200" :height="180" style=" float:left; display:inline"/>
+        <Pbar  :label="'顧客流失率'" :data="[index10[2].split('%')[0],index11[2].split('%')[0]]" :width="200" :height="180" style=" float:left; display:inline"/>
+        <Pbar  :label="'顧客存活率'" :data="[index10[3].split('%')[0],index11[3].split('%')[0]]" :width="200" :height="180" style=" float:left; display:inline"/>
         <label :items="info11" style="padding-left: 1vw; "
-          >消費金額：{{ info11[1] }}</label
+          >本期指標數據：消費金額：{{ info11[1] }}</label
         >
         <label :items="info11" style="padding-left: 1vw; "
           >消費數量：{{ info11[2] }}</label
@@ -155,8 +191,15 @@
         >
       </div>
       <div v-if="activetab === 6" class="tabcontent">
+        <Barrr :label="'總收入'" :data="[info11[1],info12[1]]" :width="200" :height="180" style=" float:left; display:inline"/>
+        <Barrr :label="'總銷量'" :data="[info11[2],info12[2]]" :width="200" :height="180" style=" float:left; display:inline"/>
+        <Barrr :label="'總成本'" :data="[info11[3],info12[3]]" :width="200" :height="180" style=" float:left; display:inline"/>
+        <Barrr :label="'淨利'"  :data="[info11[4],info12[4]]" :width="200" :height="180" style=" float:left; display:inline"/>
+        <Pbar  :label="'顧客留存率'" :data="[index11[1].split('%')[0],index12[1].split('%')[0]]" :width="200" :height="180" style=" float:left; display:inline"/>
+        <Pbar  :label="'顧客流失率'" :data="[index11[2].split('%')[0],index12[2].split('%')[0]]" :width="200" :height="180" style=" float:left; display:inline"/>
+        <Pbar  :label="'顧客存活率'" :data="[index11[3].split('%')[0],index12[3].split('%')[0]]" :width="200" :height="180" style=" float:left; display:inline"/>
         <label :items="info12" style="padding-left: 1vw; "
-          >消費金額：{{ info12[1] }}</label
+          >本期指標數據：消費金額：{{ info12[1] }}</label
         >
         <label :items="info12" style="padding-left: 1vw; "
           >消費數量：{{ info12[2] }}</label
@@ -178,8 +221,15 @@
         >
       </div>
       <div v-if="activetab === 7" class="tabcontent">
+        <Barrr :label="'總收入'" :data="[info12[1],info1[1]]" :width="200" :height="180" style=" float:left; display:inline"/>
+        <Barrr :label="'總銷量'" :data="[info12[2],info1[2]]" :width="200" :height="180" style=" float:left; display:inline"/>
+        <Barrr :label="'總成本'" :data="[info12[3],info1[3]]" :width="200" :height="180" style=" float:left; display:inline"/>
+        <Barrr :label="'淨利'" :data="[info12[4],info1[4]]" :width="200" :height="180" style=" float:left; display:inline"/>
+        <Pbar  :label="'顧客留存率'" :data="[index12[1].split('%')[0],index1[1].split('%')[0]]" :width="200" :height="180" style=" float:left; display:inline"/>
+        <Pbar  :label="'顧客流失率'" :data="[index12[2].split('%')[0],index1[2].split('%')[0]]" :width="200" :height="180" style=" float:left; display:inline"/>
+        <Pbar  :label="'顧客存活率'" :data="[index12[3].split('%')[0],index1[3].split('%')[0]]" :width="200" :height="180" style=" float:left; display:inline"/>
         <label :items="info1" style="padding-left: 1vw; "
-          >消費金額：{{ info1[1] }}</label
+          >本期指標數據：消費金額：{{ info1[1] }}</label
         >
         <label :items="info1" style="padding-left: 1vw; "
           >消費數量：{{ info1[2] }}</label
@@ -205,7 +255,13 @@
 </template>
 
 <script>
+import Barrr from "../components/bar";
+import Pbar from "../components/percentagebar";
 export default {
+  components: {
+    Barrr,
+    Pbar,
+  },
   data() {
     return {
       el: "#tabs",
@@ -303,12 +359,12 @@ export default {
       .then((res) => {
         if (res.data) {
           //alert(JSON.stringify(res.data));
-
+          // console.log( res.data[0].retetionRate.split('%')[0])
           this.index7.push(
             res.data[0].month,
             res.data[0].retetionRate,
             res.data[0].defectionRate,
-            res.data[0].surviveRate
+            res.data[0].surviveRate,
           );
           this.index8.push(
             res.data[1].month,
@@ -421,14 +477,13 @@ export default {
   border-radius: 10px;
   box-shadow: 3px 3px 6px #e1e1e1;
   width: 74vw;
-  height: 15vh;
+  height: 63vh;
   margin-left: -2%;
   text-align: left;
-
-  padding: 3vw;
+  padding: 2vw;
 }
 #btable {
-  text-align: center;
+  text-align: top;
   color: white;
 }
 </style>

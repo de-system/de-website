@@ -16,9 +16,6 @@
         style="width : 35vw; height: 35vh; padding: 0px; left: 55%"
       />
     </form>
-    <form action="post" id="indexform">
-      <Tabbb />
-    </form>
   </div>
 </template>
 
@@ -27,7 +24,6 @@ import topbar from "../components/topbar";
 import sidebar from "../components/sidebar";
 import Pie from "../components/piechart";
 import Bar from "../components/barchart";
-import Tabbb from "../components/barebonetab";
 export default {
   name: "pastevent",
   components: {
@@ -35,7 +31,6 @@ export default {
     sidebar,
     Pie,
     Bar,
-    Tabbb,
   },
   data() {
     return {
